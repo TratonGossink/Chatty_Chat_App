@@ -8,17 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		E50912F32A73C9A500A07091 /* Chatty_Chat_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50912F22A73C9A500A07091 /* Chatty_Chat_AppApp.swift */; };
-		E50912F52A73C9A500A07091 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50912F42A73C9A500A07091 /* ContentView.swift */; };
+		E50912F52A73C9A500A07091 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50912F42A73C9A500A07091 /* RootView.swift */; };
 		E50912F72A73C9A600A07091 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E50912F62A73C9A600A07091 /* Assets.xcassets */; };
 		E50912FA2A73C9A600A07091 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E50912F92A73C9A600A07091 /* Preview Assets.xcassets */; };
+		E58A4EA32A742DB40068F7A2 /* LexendDeca-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E58A4EA02A742DB40068F7A2 /* LexendDeca-Bold.ttf */; };
+		E58A4EA42A742DB40068F7A2 /* LexendDeca-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E58A4EA12A742DB40068F7A2 /* LexendDeca-SemiBold.ttf */; };
+		E58A4EA52A742DB40068F7A2 /* LexendDeca-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E58A4EA22A742DB40068F7A2 /* LexendDeca-Regular.ttf */; };
+		E58A4EA82A742F840068F7A2 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58A4EA72A742F840068F7A2 /* Fonts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E50912EF2A73C9A500A07091 /* Chatty_Chat_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatty_Chat_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E50912F22A73C9A500A07091 /* Chatty_Chat_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chatty_Chat_AppApp.swift; sourceTree = "<group>"; };
-		E50912F42A73C9A500A07091 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E50912F42A73C9A500A07091 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		E50912F62A73C9A600A07091 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E50912F92A73C9A600A07091 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E58A4EA02A742DB40068F7A2 /* LexendDeca-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-Bold.ttf"; sourceTree = "<group>"; };
+		E58A4EA12A742DB40068F7A2 /* LexendDeca-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-SemiBold.ttf"; sourceTree = "<group>"; };
+		E58A4EA22A742DB40068F7A2 /* LexendDeca-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-Regular.ttf"; sourceTree = "<group>"; };
+		E58A4EA72A742F840068F7A2 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +59,13 @@
 		E50912F12A73C9A500A07091 /* Chatty_Chat_App */ = {
 			isa = PBXGroup;
 			children = (
+				E58A4E9A2A73D1AF0068F7A2 /* Views */,
+				E58A4E9B2A73D1B80068F7A2 /* View Models */,
+				E58A4E9C2A73D1C20068F7A2 /* Models */,
+				E58A4E9D2A73D1CA0068F7A2 /* Services */,
+				E58A4EA62A742F560068F7A2 /* Constants */,
+				E58A4E9F2A73D1E30068F7A2 /* Fonts */,
 				E50912F22A73C9A500A07091 /* Chatty_Chat_AppApp.swift */,
-				E50912F42A73C9A500A07091 /* ContentView.swift */,
 				E50912F62A73C9A600A07091 /* Assets.xcassets */,
 				E50912F82A73C9A600A07091 /* Preview Content */,
 			);
@@ -65,6 +78,53 @@
 				E50912F92A73C9A600A07091 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E58A4E9A2A73D1AF0068F7A2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E50912F42A73C9A500A07091 /* RootView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E58A4E9B2A73D1B80068F7A2 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		E58A4E9C2A73D1C20068F7A2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E58A4E9D2A73D1CA0068F7A2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E58A4E9F2A73D1E30068F7A2 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E58A4EA02A742DB40068F7A2 /* LexendDeca-Bold.ttf */,
+				E58A4EA22A742DB40068F7A2 /* LexendDeca-Regular.ttf */,
+				E58A4EA12A742DB40068F7A2 /* LexendDeca-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		E58A4EA62A742F560068F7A2 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				E58A4EA72A742F840068F7A2 /* Fonts.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,8 +185,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E58A4EA52A742DB40068F7A2 /* LexendDeca-Regular.ttf in Resources */,
+				E58A4EA42A742DB40068F7A2 /* LexendDeca-SemiBold.ttf in Resources */,
 				E50912FA2A73C9A600A07091 /* Preview Assets.xcassets in Resources */,
 				E50912F72A73C9A600A07091 /* Assets.xcassets in Resources */,
+				E58A4EA32A742DB40068F7A2 /* LexendDeca-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +200,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E50912F52A73C9A500A07091 /* ContentView.swift in Sources */,
+				E50912F52A73C9A500A07091 /* RootView.swift in Sources */,
+				E58A4EA82A742F840068F7A2 /* Fonts.swift in Sources */,
 				E50912F32A73C9A500A07091 /* Chatty_Chat_AppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
