@@ -37,7 +37,6 @@ extension Font{
     public static var title: Font {
         return Font.custom("LexandDeca-Bold", size: 23)
     }
-    
 }
 
 

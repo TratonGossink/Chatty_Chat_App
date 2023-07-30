@@ -11,10 +11,12 @@
 		E50912F52A73C9A500A07091 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50912F42A73C9A500A07091 /* RootView.swift */; };
 		E50912F72A73C9A600A07091 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E50912F62A73C9A600A07091 /* Assets.xcassets */; };
 		E50912FA2A73C9A600A07091 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E50912F92A73C9A600A07091 /* Preview Assets.xcassets */; };
+		E51943942A76018700F5D8EC /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51943932A76018700F5D8EC /* TabBarButton.swift */; };
 		E58A4EA32A742DB40068F7A2 /* LexendDeca-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E58A4EA02A742DB40068F7A2 /* LexendDeca-Bold.ttf */; };
 		E58A4EA42A742DB40068F7A2 /* LexendDeca-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E58A4EA12A742DB40068F7A2 /* LexendDeca-SemiBold.ttf */; };
 		E58A4EA52A742DB40068F7A2 /* LexendDeca-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E58A4EA22A742DB40068F7A2 /* LexendDeca-Regular.ttf */; };
 		E58A4EA82A742F840068F7A2 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58A4EA72A742F840068F7A2 /* Fonts.swift */; };
+		E58A4EAD2A753CB10068F7A2 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58A4EAC2A753CB10068F7A2 /* TabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,10 +25,12 @@
 		E50912F42A73C9A500A07091 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		E50912F62A73C9A600A07091 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E50912F92A73C9A600A07091 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E51943932A76018700F5D8EC /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
 		E58A4EA02A742DB40068F7A2 /* LexendDeca-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-Bold.ttf"; sourceTree = "<group>"; };
 		E58A4EA12A742DB40068F7A2 /* LexendDeca-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-SemiBold.ttf"; sourceTree = "<group>"; };
 		E58A4EA22A742DB40068F7A2 /* LexendDeca-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-Regular.ttf"; sourceTree = "<group>"; };
 		E58A4EA72A742F840068F7A2 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		E58A4EAC2A753CB10068F7A2 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				E50912F42A73C9A500A07091 /* RootView.swift */,
+				E58A4EA92A753C5D0068F7A2 /* Tab Bar */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -125,6 +130,15 @@
 				E58A4EA72A742F840068F7A2 /* Fonts.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		E58A4EA92A753C5D0068F7A2 /* Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				E58A4EAC2A753CB10068F7A2 /* TabBar.swift */,
+				E51943932A76018700F5D8EC /* TabBarButton.swift */,
+			);
+			path = "Tab Bar";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +217,8 @@
 				E50912F52A73C9A500A07091 /* RootView.swift in Sources */,
 				E58A4EA82A742F840068F7A2 /* Fonts.swift in Sources */,
 				E50912F32A73C9A500A07091 /* Chatty_Chat_AppApp.swift in Sources */,
+				E51943942A76018700F5D8EC /* TabBarButton.swift in Sources */,
+				E58A4EAD2A753CB10068F7A2 /* TabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
