@@ -11,31 +11,31 @@ import SwiftUI
 extension Font{
     
     public static var bodyParagraph: Font {
-        return Font.custom("LexandDeca-Regular", size: 14)
+        return Font.custom("LexendDeca-Regular", size: 14)
     }
     
     public static var buttonText: Font {
-        return Font.custom("LexandDeca-SemiBold", size: 14)
+        return Font.custom("LexendDeca-SemiBold", size: 14)
     }
     
     public static var smallCaption: Font {
-        return Font.custom("LexandDeca-Regular", size: 12)
+        return Font.custom("LexendDeca-Regular", size: 12)
     }
     
     public static var mainHeading: Font {
-        return Font.custom("LexandDeca-SemiBold", size: 32)
+        return Font.custom("LexendDeca-SemiBold", size: 32)
     }
     
     public static var subHeading: Font {
-        return Font.custom("LexandDeca-SemiBold", size: 19)
+        return Font.custom("LexendDeca-SemiBold", size: 19)
     }
     
     public static var subFooter: Font {
-        return Font.custom("LexandDeca-Regular", size: 10)
+        return Font.custom("LexendDeca-Regular", size: 10)
     }
     
-    public static var titleText: Font {
-        return Font.custom("LexandDeca-Bold", size: 23)
+    public static var mainTitle: Font {
+        return Font.custom("LexendDeca-Bold.ttf", size: 23)
     }
 }
 
