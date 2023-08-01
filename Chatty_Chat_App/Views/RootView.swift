@@ -14,9 +14,7 @@ struct RootView: View {
     var body: some View {
         
         VStack {
-            Text("Ello World")
-                .padding()
-                .font(Font.headline)
+       
             
             TabBar(selectedTab: .constant(.contacts
                                          ))

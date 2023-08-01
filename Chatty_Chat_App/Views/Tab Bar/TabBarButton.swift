@@ -17,12 +17,12 @@ struct TabBarButton: View {
         GeometryReader { geo in
             
             if isActive  {
-            
-            Rectangle()
-                .foregroundColor(.blue)
-                .frame(width: geo.size.width/2, height: 4)
-                .padding(.leading, geo.size.width/4)
-        }
+                
+                Rectangle()
+                    .foregroundColor(.blue)
+                    .frame(width: geo.size.width/2, height: 4)
+                    .padding(.leading, geo.size.width/4)
+            }
             VStack(alignment: .center, spacing: 4) {
                 Image(systemName: imageName)
                     .resizable()

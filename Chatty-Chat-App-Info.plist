@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.367750149113-ggfee6egigs2g4jfs8nnsf2avmu1pd18</string>
+			</array>
+		</dict>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string></string>
+	</array>
+	<key>item0</key>
+	<string>LexandDeca-Bold.ttf</string>
+	<key>item1</key>
+	<string>LexandDeca-Regular.ttf</string>
+	<key>item2</key>
+	<string>LexandDeca-SemiBold.ttf</string>
+</dict>
+</plist>

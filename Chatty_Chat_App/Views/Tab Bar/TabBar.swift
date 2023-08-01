@@ -28,28 +28,6 @@ struct TabBar: View {
             } label: {
                 
                 TabBarButton(buttonText: "Chats", imageName: "bubble.left", isActive: selectedTab == .chats)
-                
-//                GeometryReader { geo in
-//
-//                    if selectedTab == .chats {
-//
-//                    Rectangle()
-//                        .foregroundColor(.blue)
-//                        .frame(width: geo.size.width/2, height: 4)
-//                        .padding(.leading, geo.size.width/4)
-//                }
-//                    VStack(alignment: .center, spacing: 4) {
-//                        Image(systemName: "bubble.left")
-//                            .resizable()
-//                            .scaledToFit()
-//                            .frame(width: 24, height: 24)
-//                        Text("Chats")
-//                            .font(Font.caption)
-//                    }
-//                    .frame(width: geo.size.width, height:
-//                            geo.size.height)
-//                }
-                
             }
             .tint(Color("icons-secondary"))
             
@@ -74,19 +52,6 @@ struct TabBar: View {
                 
             } label: {
                 TabBarButton(buttonText: "Contacts", imageName: "person", isActive: selectedTab == .contacts)
-                
-                
-//                GeometryReader { geo in
-//
-//                    if selectedTab == .contacts{
-//
-//                        Rectangle()
-//                            .foregroundColor(.blue)
-//                            .frame(width: geo.size.width/2, height: 4)
-//                            .padding(.leading, geo.size.width/4)
-//                    }
-//
-                
             }
             .tint(Color("icons-secondary"))
         }
