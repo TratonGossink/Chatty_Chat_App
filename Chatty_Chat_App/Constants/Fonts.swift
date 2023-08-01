@@ -10,19 +10,19 @@ import SwiftUI
 
 extension Font{
     
-    public static var body: Font {
+    public static var bodyParagraph: Font {
         return Font.custom("LexandDeca-Regular", size: 14)
     }
     
-    public static var button: Font {
+    public static var buttonText: Font {
         return Font.custom("LexandDeca-SemiBold", size: 14)
     }
     
-    public static var caption: Font {
+    public static var smallCaption: Font {
         return Font.custom("LexandDeca-Regular", size: 12)
     }
     
-    public static var heading: Font {
+    public static var mainHeading: Font {
         return Font.custom("LexandDeca-SemiBold", size: 32)
     }
     
@@ -30,11 +30,11 @@ extension Font{
         return Font.custom("LexandDeca-SemiBold", size: 19)
     }
     
-    public static var footer: Font {
+    public static var subFooter: Font {
         return Font.custom("LexandDeca-Regular", size: 10)
     }
     
-    public static var title: Font {
+    public static var titleText: Font {
         return Font.custom("LexandDeca-Bold", size: 23)
     }
 }

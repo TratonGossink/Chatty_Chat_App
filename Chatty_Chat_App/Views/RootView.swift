@@ -16,8 +16,7 @@ struct RootView: View {
         VStack {
        
             
-            TabBar(selectedTab: .constant(.contacts
-                                         ))
+            TabBar(selectedTab: .constant(.contacts))
         }
     }
 }
