@@ -15,15 +15,18 @@ struct RootView: View {
         
         VStack {
        
+            Text("Ello World!")
+                .padding()
+                .font(Font.mainHeading)
+            Spacer()
             
-            TabBar(selectedTab: .constant(.contacts))
+            TabBar(selectedTab: $selectedTab)
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some
-    View {
+    static var previews: some View {
         RootView()
     }
 }
