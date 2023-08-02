@@ -18,6 +18,8 @@ enum OnboardingStep: Int {
 
 struct OnBoardingContainerView: View {
     
+    @Binding var isOnboarding: Bool
+    
     @State var currentStep: OnboardingStep = .welcome
     
     var body: some View {
@@ -33,11 +35,11 @@ struct OnBoardingContainerView: View {
             case .phonenumber:
                 PhoneNumberView(currentStep: $currentStep)
             case .verification:
-                VerificationView()
+                VerificationView(currentStep: $currentStep)
             case .profile:
-                CreateProfileView()
+                CreateProfileView(currentStep: $currentStep)
             case .contacts:
-                SyncContactsView()
+                SyncContactsView(isOnboarding: $isOnboarding)
                 
             }
         }
@@ -47,6 +49,6 @@ struct OnBoardingContainerView: View {
 
 struct OnBoardingContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        OnBoardingContainerView()
+        OnBoardingContainerView(isOnboarding: .constant(true))
     }
 }

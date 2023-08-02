@@ -40,7 +40,7 @@ Text("By tappig on 'Get Started', you agree to our Privacy Policy")
                 .padding(.top, 14)
                 .padding(.bottom, 24)
         }
-        
+       
     }
     
 }

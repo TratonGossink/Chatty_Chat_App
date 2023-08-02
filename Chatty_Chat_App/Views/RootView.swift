@@ -29,7 +29,7 @@ struct RootView: View {
             
         }
     content: {
-        OnBoardingContainerView()
+        OnBoardingContainerView(isOnboarding: $isOnBoarding)
         
     }
     }

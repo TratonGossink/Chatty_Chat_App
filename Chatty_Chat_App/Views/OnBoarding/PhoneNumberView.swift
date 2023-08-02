@@ -38,6 +38,7 @@ struct PhoneNumberView: View {
                    
                     TextField("e.g. +1 123 123 1234", text: $phoneNumber )
                         .foregroundColor(Color("text-input"))
+                        .font(Font.bodyParagraph)
                         .padding(.leading, 32)
                     Spacer()
                     
@@ -67,7 +68,7 @@ struct PhoneNumberView: View {
             }
             .buttonStyle(OnboardingButton())
         }
-        .padding(.bottom, 52)
+        .padding(.bottom, 64)
         
     }
 }

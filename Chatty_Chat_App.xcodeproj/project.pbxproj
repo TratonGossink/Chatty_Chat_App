@@ -31,6 +31,7 @@
 		E58A4EA82A742F840068F7A2 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58A4EA72A742F840068F7A2 /* Fonts.swift */; };
 		E58A4EAD2A753CB10068F7A2 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58A4EAC2A753CB10068F7A2 /* TabBar.swift */; };
 		E5D15EEA2A794AC70085D079 /* OnboardingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D15EE92A794AC70085D079 /* OnboardingButton.swift */; };
+		E5D15EEC2A79C4510085D079 /* ProfileTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D15EEB2A79C4510085D079 /* ProfileTextFieldStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		E58A4EA72A742F840068F7A2 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		E58A4EAC2A753CB10068F7A2 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		E5D15EE92A794AC70085D079 /* OnboardingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButton.swift; sourceTree = "<group>"; };
+		E5D15EEB2A79C4510085D079 /* ProfileTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTextFieldStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 			children = (
 				E58A4EA72A742F840068F7A2 /* Fonts.swift */,
 				E5D15EE92A794AC70085D079 /* OnboardingButton.swift */,
+				E5D15EEB2A79C4510085D079 /* ProfileTextFieldStyle.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				E51943B62A78998100F5D8EC /* WelcomeView.swift in Sources */,
 				E51943AF2A7880AD00F5D8EC /* AuthViewModel.swift in Sources */,
 				E51943BC2A7899D700F5D8EC /* CreateProfileView.swift in Sources */,
+				E5D15EEC2A79C4510085D079 /* ProfileTextFieldStyle.swift in Sources */,
 				E51943B82A78998D00F5D8EC /* PhoneNumberView.swift in Sources */,
 				E50912F32A73C9A500A07091 /* Chatty_Chat_AppApp.swift in Sources */,
 				E51943BA2A7899C400F5D8EC /* VerificationView.swift in Sources */,
