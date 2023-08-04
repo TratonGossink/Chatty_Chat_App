@@ -11,9 +11,6 @@ import SwiftUI
 struct profileTextFieldStyle: TextFieldStyle {
 
     func _body(configuration: TextField<Self._Label>) -> some View {
-        
-     
-        
         ZStack {
             Rectangle()
                 .foregroundColor(Color("input"))
