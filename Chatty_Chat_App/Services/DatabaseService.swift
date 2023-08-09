@@ -8,6 +8,8 @@
 import Foundation
 import Contacts
 import Firebase
+import UIKit
+import FirebaseStorage
 
 class DatabaseService {
     
@@ -61,4 +63,84 @@ class DatabaseService {
             }
         }
     }
+    
+    func setUserProfile(firstName: String, lastName: String, image: UIImage?, completion: @escaping(Bool) -> Void) {
+        
+        //check if user is logged in  -  TODO: Guard against logged out users
+        
+        //Firestore reference
+        let db = Firestore.firestore()
+        //Set profile data
+        //TODO: After implementing auth, create document with actual users' id
+        let doc = db.collection("users").document()
+        doc.setData(["firstname": firstName, "lastname": lastName])
+        //Check if image is passed through
+        if let image = image {
+        
+            // Create storage reference
+            let storageRef = Storage.storage().reference()
+            
+            // Turn our image into data
+            let imageData = image.jpegData(compressionQuality: 0.8)
+            
+            // Check that we were able to convert it to data
+            guard imageData != nil else {
+                return
+            }
+            
+            // Specify the file path and name
+            let path = "images/\(UUID().uuidString).jpg"
+            let fileRef = storageRef.child(path)
+            
+            let uploadTask = fileRef.putData(imageData!) { meta, error in
+                
+                if error == nil && meta != nil
+                {
+                    doc.setData(["photo": path], merge: true) { error in
+                        if error == nil {
+                            completion(true)
+                        }
+                    }
+            }
+                else {
+                    completion(false)
+                }
+            }
+            
+        }
+        //Upload image data
+        
+        //set image path to profile
+        
+    }
+    
+    func checkUserProfile(completion: @escaping (Bool) -> Void) {
+        
+        // Check that the user is logged
+        guard AuthViewModel.isUserLoggedIn() != false else {
+            return
+        }
+        
+        // Create firebase ref
+        let db = Firestore.firestore()
+        
+        db.collection("users").document(AuthViewModel.getLoggedInUserId()).getDocument { snapshot, error in
+            
+            // TODO: Keep the users profile data
+            if snapshot != nil && error == nil {
+                
+                // Notify that profile exists
+                completion(snapshot!.exists)
+            }
+            else {
+                // TODO: Look into using Result type to indicate failure vs profile exists
+                completion(false)
+            }
+            
+        }
+        
+    }
+    
 }
+
+

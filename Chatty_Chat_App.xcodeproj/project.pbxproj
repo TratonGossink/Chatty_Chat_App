@@ -25,11 +25,15 @@
 		E51943BA2A7899C400F5D8EC /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51943B92A7899C400F5D8EC /* VerificationView.swift */; };
 		E51943BC2A7899D700F5D8EC /* CreateProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51943BB2A7899D700F5D8EC /* CreateProfileView.swift */; };
 		E51943BE2A7899E600F5D8EC /* SyncContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51943BD2A7899E600F5D8EC /* SyncContactsView.swift */; };
+		E534388E2A7F0A400088858A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E534388D2A7F0A400088858A /* ImagePicker.swift */; };
+		E53438902A8048340088858A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E534388F2A8048340088858A /* FirebaseStorage */; };
 		E58A4EA32A742DB40068F7A2 /* LexendDeca-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E58A4EA02A742DB40068F7A2 /* LexendDeca-Bold.ttf */; };
 		E58A4EA42A742DB40068F7A2 /* LexendDeca-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E58A4EA12A742DB40068F7A2 /* LexendDeca-SemiBold.ttf */; };
 		E58A4EA52A742DB40068F7A2 /* LexendDeca-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E58A4EA22A742DB40068F7A2 /* LexendDeca-Regular.ttf */; };
 		E58A4EA82A742F840068F7A2 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58A4EA72A742F840068F7A2 /* Fonts.swift */; };
 		E58A4EAD2A753CB10068F7A2 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58A4EAC2A753CB10068F7A2 /* TabBar.swift */; };
+		E58AA3F92A7D696900079437 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E58AA3F82A7D696900079437 /* FirebaseFirestoreSwift */; };
+		E5BE30872A8311C400BA4AB2 /* DigitTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BE30862A8311C400BA4AB2 /* DigitTextFieldStyle.swift */; };
 		E5D15EEA2A794AC70085D079 /* OnboardingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D15EE92A794AC70085D079 /* OnboardingButton.swift */; };
 		E5D15EEC2A79C4510085D079 /* ProfileTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D15EEB2A79C4510085D079 /* ProfileTextFieldStyle.swift */; };
 		E5D15EEE2A79E3340085D079 /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D15EED2A79E3340085D079 /* ContactsViewModel.swift */; };
@@ -56,11 +60,13 @@
 		E51943B92A7899C400F5D8EC /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
 		E51943BB2A7899D700F5D8EC /* CreateProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileView.swift; sourceTree = "<group>"; };
 		E51943BD2A7899E600F5D8EC /* SyncContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncContactsView.swift; sourceTree = "<group>"; };
+		E534388D2A7F0A400088858A /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		E58A4EA02A742DB40068F7A2 /* LexendDeca-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-Bold.ttf"; sourceTree = "<group>"; };
 		E58A4EA12A742DB40068F7A2 /* LexendDeca-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-SemiBold.ttf"; sourceTree = "<group>"; };
 		E58A4EA22A742DB40068F7A2 /* LexendDeca-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-Regular.ttf"; sourceTree = "<group>"; };
 		E58A4EA72A742F840068F7A2 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		E58A4EAC2A753CB10068F7A2 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		E5BE30862A8311C400BA4AB2 /* DigitTextFieldStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitTextFieldStyle.swift; sourceTree = "<group>"; };
 		E5D15EE92A794AC70085D079 /* OnboardingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButton.swift; sourceTree = "<group>"; };
 		E5D15EEB2A79C4510085D079 /* ProfileTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTextFieldStyle.swift; sourceTree = "<group>"; };
 		E5D15EED2A79E3340085D079 /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
@@ -74,10 +80,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E58AA3F92A7D696900079437 /* FirebaseFirestoreSwift in Frameworks */,
 				E519439E2A77BF0000F5D8EC /* FirebaseDatabaseSwift in Frameworks */,
 				E51943A02A77BF0000F5D8EC /* FirebaseFirestore in Frameworks */,
 				E519439C2A77BF0000F5D8EC /* FirebaseDatabase in Frameworks */,
 				E519439A2A77BF0000F5D8EC /* FirebaseAuth in Frameworks */,
+				E53438902A8048340088858A /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +97,7 @@
 			children = (
 				E50912F12A73C9A500A07091 /* Chatty_Chat_App */,
 				E50912F02A73C9A500A07091 /* Products */,
+				E58AA3F72A7D696900079437 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,6 +146,7 @@
 				E51943B92A7899C400F5D8EC /* VerificationView.swift */,
 				E51943BB2A7899D700F5D8EC /* CreateProfileView.swift */,
 				E51943BD2A7899E600F5D8EC /* SyncContactsView.swift */,
+				E534388D2A7F0A400088858A /* ImagePicker.swift */,
 			);
 			path = OnBoarding;
 			sourceTree = "<group>";
@@ -193,6 +203,7 @@
 				E5D15EE92A794AC70085D079 /* OnboardingButton.swift */,
 				E5D15EEB2A79C4510085D079 /* ProfileTextFieldStyle.swift */,
 				E5D15EF32A7C654B0085D079 /* TextHelper.swift */,
+				E5BE30862A8311C400BA4AB2 /* DigitTextFieldStyle.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -204,6 +215,13 @@
 				E51943932A76018700F5D8EC /* TabBarButton.swift */,
 			);
 			path = "Tab Bar";
+			sourceTree = "<group>";
+		};
+		E58AA3F72A7D696900079437 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +245,8 @@
 				E519439B2A77BF0000F5D8EC /* FirebaseDatabase */,
 				E519439D2A77BF0000F5D8EC /* FirebaseDatabaseSwift */,
 				E519439F2A77BF0000F5D8EC /* FirebaseFirestore */,
+				E58AA3F82A7D696900079437 /* FirebaseFirestoreSwift */,
+				E534388F2A8048340088858A /* FirebaseStorage */,
 			);
 			productName = Chatty_Chat_App;
 			productReference = E50912EF2A73C9A500A07091 /* Chatty_Chat_App.app */;
@@ -302,10 +322,12 @@
 				E51943AF2A7880AD00F5D8EC /* AuthViewModel.swift in Sources */,
 				E51943BC2A7899D700F5D8EC /* CreateProfileView.swift in Sources */,
 				E5D15EEC2A79C4510085D079 /* ProfileTextFieldStyle.swift in Sources */,
+				E5BE30872A8311C400BA4AB2 /* DigitTextFieldStyle.swift in Sources */,
 				E51943B82A78998D00F5D8EC /* PhoneNumberView.swift in Sources */,
 				E50912F32A73C9A500A07091 /* Chatty_Chat_AppApp.swift in Sources */,
 				E51943BA2A7899C400F5D8EC /* VerificationView.swift in Sources */,
 				E5D15EEE2A79E3340085D079 /* ContactsViewModel.swift in Sources */,
+				E534388E2A7F0A400088858A /* ImagePicker.swift in Sources */,
 				E51943942A76018700F5D8EC /* TabBarButton.swift in Sources */,
 				E58A4EAD2A753CB10068F7A2 /* TabBar.swift in Sources */,
 			);
@@ -441,9 +463,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Chatty-Chat-App-Info.plist";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Sync your contacts to start chatting. ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -472,9 +496,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Chatty-Chat-App-Info.plist";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Sync your contacts to start chatting. ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -544,6 +570,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E51943982A77BF0000F5D8EC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		E534388F2A8048340088858A /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E51943982A77BF0000F5D8EC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		E58AA3F82A7D696900079437 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E51943982A77BF0000F5D8EC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

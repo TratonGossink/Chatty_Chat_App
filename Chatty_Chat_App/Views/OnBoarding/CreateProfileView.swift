@@ -13,7 +13,13 @@ struct CreateProfileView: View {
     
     @State var firstName = ""
     @State var lastName = ""
+    @State var selectedImage: UIImage?
+    @State var isPickerShowing = false
     
+    @State var isSourceMenuShowing = false
+    @State var source: UIImagePickerController.SourceType = .photoLibrary
+    
+    @State var isSavedButtonDisabled = false
     
     var body: some View {
         
@@ -30,19 +36,30 @@ struct CreateProfileView: View {
             
             Button {
                 //show action sheet
+                
+                isSourceMenuShowing = true
+                
             } label: {
                 
                 ZStack {
                     
+                    if selectedImage != nil {
+                        
+                        Image(uiImage: selectedImage!)
+                            .resizable()
+                            .scaledToFill()
+                            .clipShape(Circle())
+                        
+                    } else {
+                        Circle()
+                            .foregroundColor(Color.white)
+                        Image(systemName: "camera.fill")
+                            .tint(Color("icons-input"))
+                    }
                     Circle()
-                        .foregroundColor(Color.white)
-                    Circle()
-                        .stroke(Color("profile-image-border"), lineWidth: 2)
-                    Image(systemName: "camera.fill")
-                        .tint(Color("icons-input"))
-                        .frame(width: 48, height: 36)
+                        .stroke(Color("create-profile-border"), lineWidth: 2)
+                    
                 }
-                .padding(.top, 36)
                 .frame(width: 134, height: 134)
             }
             
@@ -55,12 +72,56 @@ struct CreateProfileView: View {
                 .textFieldStyle(profileTextFieldStyle())
             Spacer()
             Button {
-                currentStep = .contacts
+                //Preventing double tapping of button
+                isSavedButtonDisabled = true
+                
+                DatabaseService().setUserProfile(firstName: firstName, lastName: lastName, image: selectedImage) { isSuccess in
+                    if isSuccess {
+                        currentStep = .contacts
+                    }
+                    else {
+                        
+                    }
+                    isSavedButtonDisabled = false
+                }
             } label: {
-                Text("Next")
+                Text(isSavedButtonDisabled ? "Uploading" : "Save")
             }
             .buttonStyle(OnboardingButton())
+            .disabled(isSavedButtonDisabled)
             .padding(.bottom, 64)
+            
+        }
+        .confirmationDialog("From where?", isPresented: $isSourceMenuShowing, actions: {
+            
+            Button {
+                // Set source to photo library
+                
+                self.source = .photoLibrary
+                isPickerShowing = true
+                
+            } label: {
+                Text("Photo Library")
+            }
+            
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                
+                Button {
+                    //Set source to camera
+                    self.source = .camera
+                    
+                    isPickerShowing = true
+                } label: {
+                    Text("Take Photo")
+                }
+            }
+            
+        })
+        .sheet(isPresented: $isPickerShowing) {
+            
+            ImagePicker(selectedImage: $selectedImage,
+                        isPickerShowing: $isPickerShowing, source: self.source)
+            
         }
         
     }
@@ -68,6 +129,6 @@ struct CreateProfileView: View {
 
 struct CreateProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateProfileView(currentStep: .constant(.contacts))
+        CreateProfileView(currentStep: .constant(.profile))
     }
 }
