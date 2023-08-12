@@ -15,8 +15,8 @@ struct DigitTextFieldStyle: TextFieldStyle {
             }
             .frame(height: 60)
             configuration
-                .font(.system(size: 50))
-                .padding(.leading, 15)
+                .font(.system(size: 32))
+                .padding(.leading, 25)
         }
     }
 }

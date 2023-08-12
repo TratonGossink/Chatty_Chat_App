@@ -22,6 +22,7 @@ struct OnBoardingContainerView: View {
     
     @State var currentStep: OnboardingStep = .welcome
     
+    
     var body: some View {
         
         ZStack {
@@ -35,8 +36,7 @@ struct OnBoardingContainerView: View {
             case .phonenumber:
                 PhoneNumberView(currentStep: $currentStep)
             case .verification:
-                VerificationView(currentStep: $currentStep, isOnboarding: $isOnboarding
-                )
+                VerificationView(currentStep: $currentStep, isOnboarding: $isOnboarding)
             case .profile:
                 CreateProfileView(currentStep: $currentStep)
             case .contacts:

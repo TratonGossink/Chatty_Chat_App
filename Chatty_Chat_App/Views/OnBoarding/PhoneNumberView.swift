@@ -38,7 +38,7 @@ struct PhoneNumberView: View {
                 HStack {
                    
                     TextField("e.g. +1 613 515 0123", text: $phoneNumber )
-                        .foregroundColor(Color("text-input"))
+                        .foregroundColor(Color(.black))
                         .font(Font.bodyParagraph)
                         .padding(.leading, 32)
                         .keyboardType(.numberPad)

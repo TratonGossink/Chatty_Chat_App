@@ -17,9 +17,12 @@ struct RootView: View {
         
         VStack {
        
-            Text("Ello World!")
-                .padding()
-                .font(Font.mainHeading)
+            switch selectedTab {
+            case .chats:
+                ChatsListView()
+            case .contacts:
+                ContactsListView()
+            }
             Spacer()
             
             TabBar(selectedTab: $selectedTab)

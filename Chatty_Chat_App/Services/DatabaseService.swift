@@ -10,6 +10,7 @@ import Contacts
 import Firebase
 import UIKit
 import FirebaseStorage
+import FirebaseFirestore
 
 class DatabaseService {
     
@@ -67,13 +68,18 @@ class DatabaseService {
     func setUserProfile(firstName: String, lastName: String, image: UIImage?, completion: @escaping(Bool) -> Void) {
         
         //check if user is logged in  -  TODO: Guard against logged out users
-        
+        guard AuthViewModel.isUserLoggedIn() != false else {
+            return
+        }
         //Firestore reference
         let db = Firestore.firestore()
         //Set profile data
-        //TODO: After implementing auth, create document with actual users' id
-        let doc = db.collection("users").document()
-        doc.setData(["firstname": firstName, "lastname": lastName])
+        
+        let userPhone = TextHelper.sanitizePhoneNumber(AuthViewModel.getLoggedInUserPhone())
+        
+        //TODO: After implementing auth, create document with actual users uid
+        let doc = db.collection("users").document(AuthViewModel.getLoggedInUserId())
+        doc.setData(["firstname": firstName, "lastname": lastName, "phone": userPhone])
         //Check if image is passed through
         if let image = image {
         

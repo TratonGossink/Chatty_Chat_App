@@ -17,6 +17,7 @@ enum Tabs: Int {
 struct TabBar: View {
     
     @Binding var selectedTab: Tabs
+//    @Binding var currentStep: OnboardingStep
     
     var body: some View {
         
@@ -34,6 +35,8 @@ struct TabBar: View {
             .tint(Color("icons-secondary"))
             
             Button {
+                AuthViewModel.logOut()
+//               currentStep = .welcome
                 
             } label: {
                 
