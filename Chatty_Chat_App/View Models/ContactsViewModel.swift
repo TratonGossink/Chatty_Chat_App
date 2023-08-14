@@ -24,7 +24,9 @@ class ContactsViewModel: ObservableObject {
                 let store = CNContactStore()
                 
                 //CN Key request info
-                let keys = [CNContactPhoneNumbersKey, CNContactGivenNameKey, CNContactFamilyNameKey] as [CNKeyDescriptor]
+                let keys = [CNContactPhoneNumbersKey,
+                            CNContactGivenNameKey,
+                            CNContactFamilyNameKey] as [CNKeyDescriptor]
                 
                 //CN Fetch request info
                 let fetchRequest = CNContactFetchRequest(keysToFetch: keys)
@@ -48,7 +50,7 @@ class ContactsViewModel: ObservableObject {
                 
             }
             catch {
-                
+                print("Unable to retrieve info.")
             }
         }
     }

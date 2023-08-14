@@ -82,7 +82,7 @@ class DatabaseService {
         doc.setData(["firstname": firstName, "lastname": lastName, "phone": userPhone])
         //Check if image is passed through
         if let image = image {
-        
+            
             // Create storage reference
             let storageRef = Storage.storage().reference()
             
@@ -102,18 +102,34 @@ class DatabaseService {
                 
                 if error == nil && meta != nil
                 {
-                    doc.setData(["photo": path], merge: true) { error in
+                    //Full URL for image
+                    fileRef.downloadURL { url, error in
+                        
+                        if url != nil && error == nil {
+           
+                    
+                            doc.setData(["photo": url!.absoluteString], merge: true) { error in
                         if error == nil {
                             completion(true)
                         }
                     }
+                }
+                        //Unsuccessful url retrieval
+                        else {
+                            completion(false)
+                        }
             }
+        }
                 else {
                     completion(false)
                 }
             }
             
         }
+        else {
+            completion(true)
+        }
+        
         //Upload image data
         
         //set image path to profile

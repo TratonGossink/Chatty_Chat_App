@@ -27,6 +27,7 @@
 		E51943BE2A7899E600F5D8EC /* SyncContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51943BD2A7899E600F5D8EC /* SyncContactsView.swift */; };
 		E534388E2A7F0A400088858A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E534388D2A7F0A400088858A /* ImagePicker.swift */; };
 		E53438902A8048340088858A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E534388F2A8048340088858A /* FirebaseStorage */; };
+		E57EA87D2A8A388300BAE6C0 /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57EA87C2A8A388300BAE6C0 /* ContactRow.swift */; };
 		E58A4EA32A742DB40068F7A2 /* LexendDeca-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E58A4EA02A742DB40068F7A2 /* LexendDeca-Bold.ttf */; };
 		E58A4EA42A742DB40068F7A2 /* LexendDeca-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E58A4EA12A742DB40068F7A2 /* LexendDeca-SemiBold.ttf */; };
 		E58A4EA52A742DB40068F7A2 /* LexendDeca-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E58A4EA22A742DB40068F7A2 /* LexendDeca-Regular.ttf */; };
@@ -63,6 +64,7 @@
 		E51943BB2A7899D700F5D8EC /* CreateProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileView.swift; sourceTree = "<group>"; };
 		E51943BD2A7899E600F5D8EC /* SyncContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncContactsView.swift; sourceTree = "<group>"; };
 		E534388D2A7F0A400088858A /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		E57EA87C2A8A388300BAE6C0 /* ContactRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRow.swift; sourceTree = "<group>"; };
 		E58A4EA02A742DB40068F7A2 /* LexendDeca-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-Bold.ttf"; sourceTree = "<group>"; };
 		E58A4EA12A742DB40068F7A2 /* LexendDeca-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-SemiBold.ttf"; sourceTree = "<group>"; };
 		E58A4EA22A742DB40068F7A2 /* LexendDeca-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-Regular.ttf"; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				E5FBFDEE2A865BD60070003E /* ContactsListView.swift */,
+				E57EA87C2A8A388300BAE6C0 /* ContactRow.swift */,
 			);
 			path = "Contact Views";
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				E534388E2A7F0A400088858A /* ImagePicker.swift in Sources */,
 				E51943942A76018700F5D8EC /* TabBarButton.swift in Sources */,
 				E58A4EAD2A753CB10068F7A2 /* TabBar.swift in Sources */,
+				E57EA87D2A8A388300BAE6C0 /* ContactRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,12 +12,12 @@ struct UserInfo: Codable, Identifiable {
     
     @DocumentID var id: String?
     
-    var firstName: String?
+    var firstname: String?
     
-    var lastName: String?
+    var lastname: String?
     
-    var phoneNum: String?
+    var phone: String?
      
-    var contactPhoto: String?
+    var photo: String?
     
 }
