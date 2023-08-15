@@ -72,6 +72,10 @@ struct CreateProfileView: View {
                 .textFieldStyle(profileTextFieldStyle())
             Spacer()
             Button {
+                
+                //TODO: Ensure both fields are filled out
+                
+                
                 //Preventing double tapping of button
                 isSavedButtonDisabled = true
                 

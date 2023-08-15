@@ -13,6 +13,8 @@ struct ContactsListView: View {
     
     @State var filterText = ""
     
+    @Binding var isChatShowing: Bool
+    
     var body: some View {
         
         VStack {
@@ -30,28 +32,43 @@ struct ContactsListView: View {
                 }
             }
             .padding(.top, 20)
-            
+            //Search Bar
             ZStack {
                 Rectangle()
                     .foregroundColor(Color.white)
                     .cornerRadius(20)
-                    
+                
                 TextField("Search contact or number", text: $filterText)
                     .font(Font.bodyParagraph)
                     .tint(Color("text-searchfield"))
                     .padding()
             }
             .frame(height: 46)
+            .onChange(of: filterText) { _ in
+                contactsViewModel.filterContacts(filterBy: filterText.lowercased().trimmingCharacters(in: .whitespacesAndNewlines))
+            }
             
-            if contactsViewModel.users.count > 0 {
-              
-                List(contactsViewModel.users) { user in
+            if contactsViewModel.filteredUser.count > 0 {
+                
+                List(contactsViewModel.filteredUser) { user in
                     
-                    Text(user.firstname ?? "Sample User")
+                    Button {
+                        //Display contact info
                         
+                        isChatShowing = true
+                        
+                    } label: {
+                        ContactRow(user: user)
+                            .listRowBackground(Color(.clear))
+                            .listRowSeparator(.hidden)
+                    }
+
+                        
+                       
+                  
                 }
                 .listStyle(.plain)
-                .scrollContentBackground(.hidden)
+                .padding(.top, 12)
             }
             else {
                 
@@ -68,7 +85,7 @@ struct ContactsListView: View {
                 
             }
             
-  
+            
             
         }
         .padding(.horizontal)
@@ -81,6 +98,6 @@ struct ContactsListView: View {
 
 struct ContactsListView_Previews: PreviewProvider {
     static var previews: some View {
-        ContactsListView()
+        ContactsListView(isChatShowing: .constant(false))
     }
 }
