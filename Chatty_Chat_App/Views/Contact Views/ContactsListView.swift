@@ -59,13 +59,10 @@ struct ContactsListView: View {
                         
                     } label: {
                         ContactRow(user: user)
-                            .listRowBackground(Color(.clear))
-                            .listRowSeparator(.hidden)
+                   
                     }
-
-                        
-                       
-                  
+                    .listRowBackground(Color(.clear))
+                    .listRowSeparator(.hidden)
                 }
                 .listStyle(.plain)
                 .padding(.top, 12)

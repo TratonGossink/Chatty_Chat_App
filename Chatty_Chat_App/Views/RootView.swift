@@ -45,7 +45,7 @@ struct RootView: View {
         }
     .fullScreenCover(isPresented: $isChatShowing){
         
-        ConversationView()
+        ConversationView(isChatShowing: $isChatShowing)
     }
     }
 }
