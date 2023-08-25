@@ -16,6 +16,7 @@ struct Chatty_Chat_AppApp: App {
         WindowGroup {
             RootView()
                 .environmentObject(ContactsViewModel())
+                .environmentObject(ChatViewModel())
         }
     }
     

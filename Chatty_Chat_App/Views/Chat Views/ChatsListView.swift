@@ -8,13 +8,37 @@
 import SwiftUI
 
 struct ChatsListView: View {
+    
+    @EnvironmentObject var chatViewModel: ChatViewModel
+    
+    @Binding var isChatShowing: Bool
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        if chatViewModel.chats.count > 0 {
+            
+            List(chatViewModel.chats) { chat in
+                
+                Button {
+                    //Set selected chat for viewmodel
+                    chatViewModel.selectedChat = chat
+                    
+                    isChatShowing = true
+                    
+                } label: {
+                    Text(chat.id ?? "No chat id.")
+                }
+            }
+            
+        }
+        else {
+            Text("No chats.")
+        }
     }
 }
 
 struct ChatsListView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatsListView()
+        ChatsListView(isChatShowing: .constant(false))
     }
 }

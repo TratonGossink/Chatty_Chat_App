@@ -69,9 +69,7 @@ struct VerificationView: View {
                     }
                     .frame(width: 19, height: 19)
                     .tint(Color("icons-input"))
-                    
-                        
-                        
+    
                 }
                 .padding()
                 
@@ -104,9 +102,7 @@ struct VerificationView: View {
                         // TODO: Show error message
                     }
                 }
-                
-                
-                
+
             } label: {
                 Text("Next")
             }

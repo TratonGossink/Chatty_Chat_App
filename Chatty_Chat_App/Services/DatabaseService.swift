@@ -31,11 +31,11 @@ class DatabaseService {
         }
         
         let db = Firestore.firestore()
-    
+        
         //Perform queries while phone number look up still exists
         while !phoneNumberCheck.isEmpty {
             
-        
+            
             let tenContactNumbers = Array(phoneNumberCheck.prefix(10))
             //Removes current 10 to loop through again
             phoneNumberCheck = Array(phoneNumberCheck.dropFirst(10))
@@ -106,20 +106,20 @@ class DatabaseService {
                     fileRef.downloadURL { url, error in
                         
                         if url != nil && error == nil {
-           
-                    
+                            
+                            
                             doc.setData(["photo": url!.absoluteString], merge: true) { error in
-                        if error == nil {
-                            completion(true)
+                                if error == nil {
+                                    completion(true)
+                                }
+                            }
                         }
-                    }
-                }
                         //Unsuccessful url retrieval
                         else {
                             completion(false)
                         }
-            }
-        }
+                    }
+                }
                 else {
                     completion(false)
                 }
@@ -161,6 +161,98 @@ class DatabaseService {
             
         }
         
+    }
+    
+    //MARK: - Chat Methods
+    
+    ///This method returns all chat documents for logged in user
+    func getAllChats(completion: @escaping ([Chat]) -> Void) {
+        
+        let db = Firestore.firestore()
+        
+        let chatsQuery = db.collection("chats")
+            .whereField("participantsid", arrayContains: AuthViewModel.getLoggedInUserId())
+        
+        chatsQuery.getDocuments { snapshot, error in
+            
+            if snapshot != nil && error == nil {
+                
+                var chats = [Chat]()
+                
+                for doc in snapshot!.documents {
+                    
+                    let chat = try? doc.data(as: Chat.self)
+                    
+                    if let chat = chat {
+                        chats.append(chat)
+                        
+                    }
+                }
+                
+                completion(chats)
+                
+            }
+            else {
+                print("Error from database.")
+            }
+            
+        }
+        
+    }
+    
+    ///Method returns all messages for given chat
+    func getAllMessages(chat: Chat, completion: @escaping ([ChatMessage]) -> Void) {
+        
+        guard chat.id != nil else {
+            completion([ChatMessage]())
+            return
+        }
+        
+        let db = Firestore.firestore()
+        
+        let msgsQuery = db.collection("chats")
+            .document(chat.id!)
+            .collection("msgs")
+            .order(by: "timestamp")
+        
+        msgsQuery.getDocuments { snapshot, error in
+            
+            if snapshot != nil && error == nil {
+                
+                var message = [ChatMessage]()
+                
+                for doc in snapshot!.documents {
+                    
+                    let msg = try? doc.data(as: ChatMessage.self)
+                    
+                    if let msg = msg {
+                        message.append(msg)
+                    }
+                }
+                completion(message)
+            }
+            else {
+                print("Error in data retrieval")
+            }
+        }
+        
+    }
+    
+    func sendMessage(msg: String, chat: Chat) {
+        
+        guard chat.id != nil else {
+            return
+        }
+        
+        let db = Firestore.firestore()
+        
+        db.collection("chats")
+            .document(chat.id!)
+            .collection("msgs")
+            .addDocument(data: ["imageurl" : "",
+                                "msg" : msg,
+                                "sendid": AuthViewModel.getLoggedInUserId(),
+                                "timestamp" : Date()])
     }
     
 }

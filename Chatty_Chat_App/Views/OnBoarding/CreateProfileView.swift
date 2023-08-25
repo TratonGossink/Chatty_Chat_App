@@ -75,17 +75,19 @@ struct CreateProfileView: View {
                 
                 //TODO: Ensure both fields are filled out
                 
-                
                 //Preventing double tapping of button
                 isSavedButtonDisabled = true
                 
                 DatabaseService().setUserProfile(firstName: firstName, lastName: lastName, image: selectedImage) { isSuccess in
                     if isSuccess {
                         currentStep = .contacts
+                        print("Success")
                     }
                     else {
-                        
+                        currentStep = .contacts
+                        print("Failed")
                     }
+                   
                     isSavedButtonDisabled = false
                 }
             } label: {

@@ -17,36 +17,36 @@ struct RootView: View {
     
     var body: some View {
         
-        ZStack {
-            Color("background")
-                .ignoresSafeArea()
-            
-            VStack {
+            ZStack {
+                Color("background")
+                    .ignoresSafeArea()
                 
-                switch selectedTab {
+                VStack {
                     
-                case .chats:
-                    ChatsListView()
-                case .contacts:
-                    ContactsListView(isChatShowing: $isChatShowing)
+                    switch selectedTab {
+                        
+                    case .chats:
+                        ChatsListView(isChatShowing: $isChatShowing)
+                    case .contacts:
+                        ContactsListView(isChatShowing: $isChatShowing)
+                    }
+                    
+                    Spacer()
+                    
+                    TabBar(selectedTab: $selectedTab)
+                    
                 }
-                
-                Spacer()
-                
-                TabBar(selectedTab: $selectedTab)
+            }
+            .fullScreenCover(isPresented: $isOnBoarding) {
                 
             }
+        content: {
+            OnBoardingContainerView(isOnboarding: $isOnBoarding)
         }
-        .fullScreenCover(isPresented: $isOnBoarding) {
+        .fullScreenCover(isPresented: $isChatShowing){
             
+            ConversationView(isChatShowing: $isChatShowing)
         }
-    content: {
-        OnBoardingContainerView(isOnboarding: $isOnBoarding)
-        }
-    .fullScreenCover(isPresented: $isChatShowing){
-        
-        ConversationView(isChatShowing: $isChatShowing)
-    }
     }
 }
 
