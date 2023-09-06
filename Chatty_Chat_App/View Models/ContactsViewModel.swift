@@ -19,8 +19,7 @@ class ContactsViewModel: ObservableObject {
     private var localContacts = [CNContact]()
     
     func getLocalContacts() {
-        
-        
+
         //Created background thread for syncronous method for contacts
         DispatchQueue.init(label: "getcontacts").async {
             
@@ -78,6 +77,22 @@ class ContactsViewModel: ObservableObject {
             user.phone?.contains(filterText) ?? false
             
         })
+    }
+    ///Given list of user ids, returns a list of user object that have the same user ids
+    func getParticipant(ids: [String]) -> [UserInfo] {
+        
+        //Filter out user list only for participants based on ids passed in
+       let actualUsers = users.filter { user in
+            
+            if user.id == nil {
+                return false
+            }
+           else {
+               return ids.contains(user.id!)
+           }
+        }
+        return actualUsers
+        
     }
     
 }

@@ -27,30 +27,52 @@ struct ProfilePicView: View {
             }
             else {
                 
-                let photoURL = URL(string: user.photo ?? "")
-                
-                AsyncImage(url: photoURL) { phase in
+                //Check image cache, if it exists
+                if let cachedImage = CacheService.getImage(forKey: user.photo!) {
                     
-                    switch phase {
-                    case .empty:
-                        //Fetching in process
-                        ProgressView()
-                    case .success(let image):
-                        //Display image fetched
-                        image
-                            .resizable()
-                            .clipShape(Circle())
-                            .scaledToFill()
-                            .clipped()
-                    case .failure:
+                    //Image in cache
+                    cachedImage
+                        .resizable()
+                        .clipShape(Circle())
+                        .scaledToFill()
+                        .clipped()
+                }
+                else {
+                    //If not in cache, download
+                    
+                    
+                    //Create URL from user photo url
+                    let photoURL = URL(string: user.photo ?? "")
+                 //Profile Image
+                    AsyncImage(url: photoURL) { phase in
                         
-                        ZStack {
-                            Circle()
-                                .foregroundColor(.white)
-                            Text(user.firstname?.prefix(1) ?? "")
-                                .font(Font.mainTitle)
+                        switch phase {
+                        case .empty:
+                            //Fetching in process
+                            ProgressView()
+                        case .success(let image):
+                            //Display image fetched
+                            image
+                                .resizable()
+                                .clipShape(Circle())
+                                .scaledToFill()
+                                .clipped()
+                                .onAppear {
+                                    //Save image into cache
+                                    CacheService.setImage(image: image, forKey: user.photo!)
+                                }
+                        case .failure:
+                            
+                            ZStack {
+                                Circle()
+                                    .foregroundColor(.white)
+                                Text(user.firstname?.prefix(1) ?? "")
+                                    .font(Font.mainTitle)
+                            }
+                        
                         }
                     }
+                    
                 }
             }
             //Img border

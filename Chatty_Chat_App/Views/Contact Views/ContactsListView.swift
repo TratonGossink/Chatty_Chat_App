@@ -11,6 +11,8 @@ struct ContactsListView: View {
     
     @EnvironmentObject var contactsViewModel: ContactsViewModel
     
+    @EnvironmentObject var chatViewModel: ChatViewModel
+    
     @State var filterText = ""
     
     @Binding var isChatShowing: Bool
@@ -18,12 +20,14 @@ struct ContactsListView: View {
     var body: some View {
         
         VStack {
+            //Header
             HStack {
                 Text("Contacts")
                     .font(Font.mainHeading)
                 Spacer()
+                
                 Button {
-                    //TODO: contact info
+                   //Settings
                 } label: {
                     Image(systemName: "gear")
                         .resizable()
@@ -53,13 +57,15 @@ struct ContactsListView: View {
                 List(contactsViewModel.filteredUser) { user in
                     
                     Button {
-                        //Display contact info
                         
+                        //Searches for existing chat with user
+                        chatViewModel.searchForChat(contact: user)
+                        //Display conversation view
                         isChatShowing = true
                         
                     } label: {
                         ContactRow(user: user)
-                   
+                         
                     }
                     .listRowBackground(Color(.clear))
                     .listRowSeparator(.hidden)
@@ -81,15 +87,10 @@ struct ContactsListView: View {
                 Spacer()
                 
             }
-            
-            
-            
+                
         }
         .padding(.horizontal)
-        .onAppear {
-            // Gather local contacts
-            contactsViewModel.getLocalContacts()
-        }
+
     }
 }
 

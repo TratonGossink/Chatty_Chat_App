@@ -27,7 +27,7 @@ struct Chat: Codable, Identifiable {
 }
 
 
-struct ChatMessage: Codable, Identifiable {
+struct ChatMessage: Codable, Identifiable, Hashable {
     
     @DocumentID var id: String?
     
@@ -40,3 +40,5 @@ struct ChatMessage: Codable, Identifiable {
     var sendid: String
     
 }
+
+

@@ -14,6 +14,9 @@ import FirebaseFirestore
 
 class DatabaseService {
     
+    var chatListViewListeners = [ListenerRegistration]()
+    var conversationViewListeners = [ListenerRegistration]()
+    
     func getPlatformUsers(localContacts: [CNContact], completion: @escaping ([UserInfo]) -> Void) {
         
         var platformUsers = [UserInfo]()
@@ -78,8 +81,9 @@ class DatabaseService {
         let userPhone = TextHelper.sanitizePhoneNumber(AuthViewModel.getLoggedInUserPhone())
         
         //TODO: After implementing auth, create document with actual users uid
-        let doc = db.collection("users").document(AuthViewModel.getLoggedInUserId())
-        doc.setData(["firstname": firstName, "lastname": lastName, "phone": userPhone])
+        let doc = db.collection("users")
+            .document(AuthViewModel.getLoggedInUserId())
+            doc.setData(["firstname": firstName, "lastname": lastName, "phone": userPhone])
         //Check if image is passed through
         if let image = image {
             
@@ -173,7 +177,7 @@ class DatabaseService {
         let chatsQuery = db.collection("chats")
             .whereField("participantsid", arrayContains: AuthViewModel.getLoggedInUserId())
         
-        chatsQuery.getDocuments { snapshot, error in
+       let listener = chatsQuery.addSnapshotListener { snapshot, error in
             
             if snapshot != nil && error == nil {
                 
@@ -197,7 +201,8 @@ class DatabaseService {
             }
             
         }
-        
+        //Keeping track of listener to close later
+        chatListViewListeners.append(listener)
     }
     
     ///Method returns all messages for given chat
@@ -214,8 +219,8 @@ class DatabaseService {
             .document(chat.id!)
             .collection("msgs")
             .order(by: "timestamp")
-        
-        msgsQuery.getDocuments { snapshot, error in
+        //Perform query for messages
+        let listener = msgsQuery.addSnapshotListener { snapshot, error in
             
             if snapshot != nil && error == nil {
                 
@@ -231,11 +236,13 @@ class DatabaseService {
                 }
                 completion(message)
             }
+         
             else {
                 print("Error in data retrieval")
             }
         }
-        
+        //Keep track of listener to close later
+        conversationViewListeners.append(listener)
     }
     
     func sendMessage(msg: String, chat: Chat) {
@@ -243,7 +250,7 @@ class DatabaseService {
         guard chat.id != nil else {
             return
         }
-        
+ 
         let db = Firestore.firestore()
         
         db.collection("chats")
@@ -253,7 +260,42 @@ class DatabaseService {
                                 "msg" : msg,
                                 "sendid": AuthViewModel.getLoggedInUserId(),
                                 "timestamp" : Date()])
+        //Update chat document to reflect msg that was just sent
+        db.collection("chats")
+            .document(chat.id!)
+            .setData(["updated": Date(),
+                      "lastmsg": msg],
+                        merge: true)
+        
     }
+    
+    func createChat(chat: Chat, completion: @escaping (String) -> Void) {
+        //Database reference
+        let db = Firestore.firestore()
+        
+        //Create a new document
+       let doc = db.collection("chats").document()
+       //Set data for document
+        try? doc.setData(from: chat, completion: { error in
+            
+            //Communicate new document id
+            completion(doc.documentID)
+        })
+        
+    }
+    
+    func detachChatListViewListeners() {
+        for listener in chatListViewListeners {
+            listener.remove()
+        }
+    }
+    
+    func detachConversationViewListeners() {
+        for listener in conversationViewListeners {
+            listener.remove()
+        }
+    }
+    
     
 }
 

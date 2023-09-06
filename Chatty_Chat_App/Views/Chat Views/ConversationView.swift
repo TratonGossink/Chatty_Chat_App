@@ -11,9 +11,19 @@ struct ConversationView: View {
     
     @EnvironmentObject var chatViewModel: ChatViewModel
     
+    @EnvironmentObject var contactsViewModel: ContactsViewModel
+    
     @Binding var isChatShowing: Bool
     
+    @State var selectedImage: UIImage?
+    @State var isPickerShowing = false
+    
+    @State var isSourceMenuShowing = false
+    @State var source: UIImagePickerController.SourceType = .photoLibrary
+    
     @State var chatMessage = ""
+    
+    @State var participants = [UserInfo]()
     
     var body: some View {
         
@@ -23,9 +33,10 @@ struct ConversationView: View {
             HStack {
                 
                 VStack (alignment: .leading){
-                    
+                    //Back arrow
                     Button {
                         
+                        //Dismissees existing chat
                         isChatShowing = false
                         
                     } label: {
@@ -36,25 +47,45 @@ struct ConversationView: View {
                             .foregroundColor(Color("text-header"))
                     }
                     .padding(.bottom, 16)
-                    Text("Some User")
-                        .font(Font.subHeading)
                     
+                    //User Name or Title of Chat
+                    
+                    if participants.count > 0 {
+                        
+                        let participant = participants.first
+                        
+                        Text("\(participant?.firstname ?? "")")
+                            .font(Font.subHeading)
+                            .foregroundColor(Color("text-header"))
+                        
+                    }
                 }
                 Spacer()
-                .padding(.horizontal)
-               
-                ProfilePicView(user: UserInfo())
                 
+                //Profile Image
+                if participants.count > 0 {
+                    
+                    let participant = participants.first
+                    
+                    ProfilePicView(user: participant!)
+                }
             }
+            .padding(.horizontal)
             .frame(height: 96)
-            .padding()
             
             //Chat log
+            //MARK: - Chat Window Log
+            
+            ScrollViewReader { proxy in
+                
+            
+            
             ScrollView {
+                
                 
                 VStack (spacing: 24) {
                     
-                    ForEach (chatViewModel.messages) { msg in
+                    ForEach (Array(chatViewModel.messages.enumerated()), id: \.element) { index, msg in
                         
                         let isFromUser = msg.sendid == AuthViewModel.getLoggedInUserId()
                         
@@ -71,7 +102,7 @@ struct ConversationView: View {
                                 Spacer()
                             }
                             
-                            // Message
+                            // Message bubble
                             Text(msg.msg)
                                 .font(Font.bodyParagraph)
                                 .foregroundColor(isFromUser ? Color("text-button") : Color("text-primary"))
@@ -91,7 +122,7 @@ struct ConversationView: View {
                             }
                             
                         }
-                        
+                        .id(index)
                     }
                     
                 }
@@ -100,13 +131,24 @@ struct ConversationView: View {
                 
             }
             .background(Color("background"))
-            
+            .onChange(of: chatViewModel.messages.count) { newCount in
+                
+                withAnimation {
+                    proxy.scrollTo(newCount - 1)
+                }
+            }
+        }
+            //Chat Message Bar
             ZStack {
                 Color("background")
                     .ignoresSafeArea()
+                //Message Bar
                 HStack(spacing: 2.5) {
+                    //Camera Button
                     Button {
-                        //
+                        
+                        isSourceMenuShowing = true 
+                        
                     } label: {
                         Image(systemName: "camera")
                             .resizable()
@@ -140,17 +182,21 @@ struct ConversationView: View {
                                 .frame(width: 24, height: 24)
                                 .foregroundColor(Color("icons-input"))
                         }
-                        
-                        
+
                     }
                     .padding(.trailing, 12)
                 }
                 .frame(height: 44)
+                    
+                    //Send button
                     Button {
-                        //Function
                         
+                        chatMessage = chatMessage.trimmingCharacters(in: .whitespacesAndNewlines)
+                        
+                        //Send message
                         chatViewModel.sendMessage(msg: chatMessage)
                         
+                        //Clears text box
                         chatMessage = ""
 
                     } label: {
@@ -160,6 +206,7 @@ struct ConversationView: View {
                             .frame(width: 24, height: 24)
                             .tint(Color("bubble-primary"))
                     }
+                    .disabled(chatMessage.trimmingCharacters(in: .whitespacesAndNewlines) == "")
                     
                 }
                 .padding(.horizontal)
@@ -167,15 +214,49 @@ struct ConversationView: View {
             .frame(height: 76)
         }
         .onAppear {
+            
+            //Call view model to retrieve all chat messages
             chatViewModel.getMessages()
             
+            //Get other user instances, not including the logged in user
+            let ids = chatViewModel.getParticipantIds()
+            self.participants = contactsViewModel.getParticipant(ids: ids)
         }
+        .onDisappear() {
+            //Cleans before conversation view clears
+            chatViewModel.ConversationViewCleanup()
+        }
+        .confirmationDialog("From where?", isPresented: $isSourceMenuShowing, actions: {
+            
+            Button {
+                // Set source to photo library
+                
+                self.source = .photoLibrary
+                isPickerShowing = true
+                
+            } label: {
+                Text("Photo Library")
+            }
+            
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                
+                Button {
+                    //Set source to camera
+                    self.source = .camera
+                    
+                    isPickerShowing = true
+                } label: {
+                    Text("Take Photo")
+                }
+            }
+            
+        })
 
     }
 }
 
 struct ConversationView_Previews: PreviewProvider {
     static var previews: some View {
-        ConversationView(isChatShowing: .constant(false))
+        ConversationView(isChatShowing: .constant(true))
     }
 }

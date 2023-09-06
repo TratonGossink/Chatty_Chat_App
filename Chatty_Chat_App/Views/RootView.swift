@@ -9,6 +9,13 @@ import SwiftUI
 
 struct RootView: View {
     
+    //For detecting app state changes
+    @Environment(\.scenePhase ) var scenePhase
+    
+    @EnvironmentObject var chatViewModel: ChatViewModel
+    
+    @EnvironmentObject var contactsViewModel: ContactsViewModel
+    
     @State var selectedTab: Tabs = .contacts
     
     @State var isOnBoarding = !AuthViewModel.isUserLoggedIn()
@@ -37,15 +44,34 @@ struct RootView: View {
                     
                 }
             }
+            .onAppear(perform: {
+                if !isOnBoarding {
+                    //User has already created account
+                    //Load contacts
+                    contactsViewModel.getLocalContacts()
+                }
+            })
+        
             .fullScreenCover(isPresented: $isOnBoarding) {
                 
             }
         content: {
             OnBoardingContainerView(isOnboarding: $isOnBoarding)
         }
-        .fullScreenCover(isPresented: $isChatShowing){
+        .fullScreenCover(isPresented: $isChatShowing, onDismiss: nil){
             
             ConversationView(isChatShowing: $isChatShowing)
+        }
+        .onChange(of: scenePhase) { newPhase in
+            
+            if newPhase == .active {
+                print("Active")
+            } else if newPhase == .inactive {
+                print("Inactive")
+            } else if newPhase == .background {
+                print("Background")
+                chatViewModel.ChatViewCleanup()
+            }
         }
     }
 }
