@@ -245,6 +245,7 @@ class DatabaseService {
         conversationViewListeners.append(listener)
     }
     
+    ///Sends text message to database
     func sendMessage(msg: String, chat: Chat) {
         
         guard chat.id != nil else {
@@ -252,7 +253,7 @@ class DatabaseService {
         }
  
         let db = Firestore.firestore()
-        
+        //Adds message document
         db.collection("chats")
             .document(chat.id!)
             .collection("msgs")
@@ -266,6 +267,64 @@ class DatabaseService {
             .setData(["updated": Date(),
                       "lastmsg": msg],
                         merge: true)
+        
+    }
+    
+    ///Send photo message to database
+    func sendPhotoMessage(image: UIImage, chat: Chat) {
+        
+        guard chat.id != nil else {
+            return
+        }
+        
+        // Create storage reference
+        let storageRef = Storage.storage().reference()
+        
+        // Turn our image into data
+        let imageData = image.jpegData(compressionQuality: 0.8)
+        
+        // Check that we were able to convert it to data
+        guard imageData != nil else {
+            return
+        }
+        
+        // Specify the file path and name
+        let path = "images/\(UUID().uuidString).jpg"
+        let fileRef = storageRef.child(path)
+        
+        //Upload image
+        fileRef.putData(imageData!, metadata: nil) { metadata, error in
+            
+            // Check for errors
+            if error == nil && metadata != nil  {
+                
+                //Get url for image storage
+                fileRef.downloadURL { url, error in
+                    
+                    //Check for errors
+                    if url != nil && error == nil {
+                        
+                        //Store message
+                        let db = Firestore.firestore()
+                        //Adds message document
+                        db.collection("chats")
+                            .document(chat.id!)
+                            .collection("msgs")
+                            .addDocument(data: ["imageurl" : url!.absoluteString,
+                                                "msg" : "",
+                                                "sendid": AuthViewModel.getLoggedInUserId(),
+                                                "timestamp" : Date()])
+                        //Update chat document to reflect msg that was just sent
+                        db.collection("chats")
+                            .document(chat.id!)
+                            .setData(["updated": Date(),
+                                      "lastmsg": "Image"],
+                                        merge: true)
+                    }
+                }
+            }
+            
+        }
         
     }
     

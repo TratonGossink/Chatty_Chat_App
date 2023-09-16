@@ -15,8 +15,12 @@ enum Tabs: Int {
 }
 
 struct TabBar: View {
-    
+
     @Binding var selectedTab: Tabs
+    @Binding var isChatShowing: Bool
+    
+    @EnvironmentObject var chatViewModel: ChatViewModel
+    
 //    @Binding var currentStep: OnboardingStep
     
     var body: some View {
@@ -35,8 +39,12 @@ struct TabBar: View {
             .tint(Color("icons-secondary"))
             
             Button {
-                AuthViewModel.logOut()
-//               currentStep = .welcome
+                
+                //Clears selected chat
+                chatViewModel.clearSelectedChat()
+
+                //Displays view for new chat creation
+              isChatShowing = true
                 
             } label: {
                 
@@ -69,6 +77,6 @@ struct TabBar: View {
 
 struct TabBar_Previews: PreviewProvider {
     static var previews: some View {
-        TabBar(selectedTab: .constant(.chats))
+        TabBar(selectedTab: .constant(.chats), isChatShowing: .constant(false))
     }
 }

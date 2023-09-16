@@ -23,6 +23,7 @@ struct ProfilePicView: View {
                         .foregroundColor(.white)
                     Text(user.firstname?.prefix(1) ?? "")
                         .font(Font.mainTitle)
+                        .foregroundColor(Color("incoming-text"))
                 }
             }
             else {
@@ -68,6 +69,7 @@ struct ProfilePicView: View {
                                     .foregroundColor(.white)
                                 Text(user.firstname?.prefix(1) ?? "")
                                     .font(Font.mainTitle)
+                                    .foregroundColor(Color("incoming-text"))
                             }
                         
                         }

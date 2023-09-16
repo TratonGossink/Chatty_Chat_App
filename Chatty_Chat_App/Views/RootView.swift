@@ -22,6 +22,8 @@ struct RootView: View {
     
     @State var isChatShowing = false
     
+    @State var isSettingsShowing = false
+    
     var body: some View {
         
             ZStack {
@@ -33,14 +35,14 @@ struct RootView: View {
                     switch selectedTab {
                         
                     case .chats:
-                        ChatsListView(isChatShowing: $isChatShowing)
+                        ChatsListView(isChatShowing: $isChatShowing, isSettingsShowing: $isSettingsShowing)
                     case .contacts:
-                        ContactsListView(isChatShowing: $isChatShowing)
+                        ContactsListView(isChatShowing: $isChatShowing, isSettingsShowing: $isSettingsShowing)
                     }
                     
                     Spacer()
                     
-                    TabBar(selectedTab: $selectedTab)
+                    TabBar(selectedTab: $selectedTab, isChatShowing: $isChatShowing)
                     
                 }
             }
@@ -62,6 +64,13 @@ struct RootView: View {
             
             ConversationView(isChatShowing: $isChatShowing)
         }
+        
+        .fullScreenCover(isPresented: $isSettingsShowing, content: {
+            //Settings View
+            SettingsView(isSetttingsShowing: $isSettingsShowing, isOnBoarding: $isOnBoarding)
+        })
+        
+        
         .onChange(of: scenePhase) { newPhase in
             
             if newPhase == .active {

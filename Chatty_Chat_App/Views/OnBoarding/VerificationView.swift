@@ -10,6 +10,9 @@ import Combine
 
 struct VerificationView: View {
     
+    @EnvironmentObject var contactsViewModel: ContactsViewModel
+    @EnvironmentObject var chatViewModel: ChatViewModel
+    
     @Binding var currentStep: OnboardingStep
     @Binding var isOnboarding: Bool
     @FocusState private var focusedField: FocusedField?
@@ -91,6 +94,13 @@ struct VerificationView: View {
                             if exists {
                                 // End the onboarding
                                 isOnboarding = false
+                                
+                                //Load local contact info
+                                contactsViewModel.getLocalContacts()
+                                
+                                //Loads existing chats
+                                chatViewModel.getChats()
+                                
                             }
                             else {
                                 // Move to the profile creation step

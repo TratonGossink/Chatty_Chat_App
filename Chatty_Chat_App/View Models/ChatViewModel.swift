@@ -24,6 +24,12 @@ class ChatViewModel: ObservableObject {
         
     }
     
+    func clearSelectedChat() {
+        
+        self.selectedChat = nil
+        self.messages.removeAll()
+    }
+    
     //MARK: - Database Methods
     
     func getChats() {
@@ -35,15 +41,20 @@ class ChatViewModel: ObservableObject {
         
     }
     //Searches for chat for selected contact and displays existing chat or creates new chat if on existing chat.
-    func searchForChat(contact: UserInfo) {
+    func searchForChat(contacts: [UserInfo]) {
         
-        guard contact.id != nil else {
-            return
+        for contact in contacts  {
+            if contact.id == nil {return}
         }
         
-        let foundChat = chats.filter { chat in
+        //Create set from ids of contacts passed in
+        let setOfContactIds = Set(contacts.map { u in u.id!})
             
-            return chat.numparticipants == 2 && chat.participantsid.contains(contact.id!)
+            let foundChat = chats.filter { chat in
+            
+            let setOfParticipantIds = Set(chat.participantsid)
+            
+            return chat.numparticipants == contacts.count + 1 && setOfContactIds.isSubset(of: setOfParticipantIds)
             
         }
         //Chat between user and contact
@@ -55,8 +66,13 @@ class ChatViewModel: ObservableObject {
             
         }
         else {
+            
+            //Create array of ids of all participants
+            var allParticipantIds = contacts.map { u in u.id!}
+            allParticipantIds.append(AuthViewModel.getLoggedInUserId())
+            
             //No existing chat and creating new chat
-            let newChat = Chat(id: nil, numparticipants: 2, participantsid: [AuthViewModel.getLoggedInUserId(), contact.id!], lastmsg: nil, updated: nil, msgs: nil)
+            let newChat = Chat(id: nil, numparticipants: allParticipantIds.count, participantsid: allParticipantIds, lastmsg: nil, updated: nil, msgs: nil)
             //Set as selected chat
             self.selectedChat = newChat
             
@@ -65,8 +81,8 @@ class ChatViewModel: ObservableObject {
                 
                 // Set doc id from the auto generated document in the database
                 self.selectedChat = Chat(id: docId,
-                                         numparticipants: 2,
-                                         participantsid: [AuthViewModel.getLoggedInUserId(), contact.id!],
+                                         numparticipants: allParticipantIds.count,
+                                         participantsid: allParticipantIds,
                                          lastmsg: nil, updated: nil, msgs: nil)
                 
                 // Add chat to the chat list
@@ -96,6 +112,16 @@ class ChatViewModel: ObservableObject {
         }
         
         dbService.sendMessage(msg: msg, chat: selectedChat!)
+        
+    }
+    
+    func sendPhotoMessage(image: UIImage) {
+        // Check that we have a selected chat
+        guard selectedChat != nil else {
+            return
+        }
+        
+        dbService.sendPhotoMessage(image: image, chat: selectedChat!)
         
     }
     

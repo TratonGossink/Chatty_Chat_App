@@ -23,7 +23,7 @@ extension Font{
     }
     
     public static var mainHeading: Font {
-        return Font.custom("LexendDeca-SemiBold", size: 32)
+        return Font.custom("LexendDeca-SemiBold", size: 28)
     }
     
     public static var subHeading: Font {
@@ -35,7 +35,10 @@ extension Font{
     }
     
     public static var mainTitle: Font {
-        return Font.custom("LexendDeca-Bold.ttf", size: 23)
+        return Font.custom("LexendDeca-SemiBold.ttf", size: 23)
+    }
+    public static var chatName: Font {
+        return Font.custom("LexendDeca-SemiBold", size: 12)
     }
 }
 

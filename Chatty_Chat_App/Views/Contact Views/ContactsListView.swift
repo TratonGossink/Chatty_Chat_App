@@ -16,6 +16,7 @@ struct ContactsListView: View {
     @State var filterText = ""
     
     @Binding var isChatShowing: Bool
+    @Binding var isSettingsShowing: Bool
     
     var body: some View {
         
@@ -28,6 +29,7 @@ struct ContactsListView: View {
                 
                 Button {
                    //Settings
+                    isSettingsShowing = true
                 } label: {
                     Image(systemName: "gear")
                         .resizable()
@@ -44,7 +46,7 @@ struct ContactsListView: View {
                 
                 TextField("Search contact or number", text: $filterText)
                     .font(Font.bodyParagraph)
-                    .tint(Color("text-searchfield"))
+                    .foregroundColor(Color("text-input"))
                     .padding()
             }
             .frame(height: 46)
@@ -59,7 +61,7 @@ struct ContactsListView: View {
                     Button {
                         
                         //Searches for existing chat with user
-                        chatViewModel.searchForChat(contact: user)
+                        chatViewModel.searchForChat(contacts: [user])
                         //Display conversation view
                         isChatShowing = true
                         
@@ -96,6 +98,6 @@ struct ContactsListView: View {
 
 struct ContactsListView_Previews: PreviewProvider {
     static var previews: some View {
-        ContactsListView(isChatShowing: .constant(false))
+        ContactsListView(isChatShowing: .constant(false), isSettingsShowing: .constant(false))
     }
 }
