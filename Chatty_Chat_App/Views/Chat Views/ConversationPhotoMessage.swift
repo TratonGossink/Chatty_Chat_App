@@ -11,11 +11,16 @@ struct ConversationPhotoMessage: View {
     
     var imageUrl: String
     var isFromUser: Bool
+    var isActive: Bool = true
     
     var body: some View {
         
-            //Check image cache, if it exists
-            if let cachedImage = CacheService.getImage(forKey: imageUrl) {
+            //Inactive user - shows message of deletion 
+        if !isActive {
+            ConversationTextMessage(msg: "Photo Deleted", isFromUser: isFromUser, name: nil, isActive: isActive)
+        }
+        //Check image cache, if it exists
+                else if let cachedImage = CacheService.getImage(forKey: imageUrl) {
                 
                 //Image in cache
                 cachedImage

@@ -36,24 +36,34 @@ struct ChatsListView: View {
             }
             .padding(.top, 20)
             .padding(.horizontal)
-            //Chat list
+            
+            //Chat list & Rows
             if chatViewModel.chats.count > 0 {
                 
                 List(chatViewModel.chats) { chat in
                     
-                    Button {
-                        //Set selected chat for viewmodel
-                        chatViewModel.selectedChat = chat
-                        
-                        isChatShowing = true
-                        
-                    } label: {
-                        ChatListRow(chat: chat, otherParticipants: contactsViewModel.getParticipant(ids: chat.participantsid))
-                        
+                    let otherParticipants = contactsViewModel.getParticipant(ids: chat.participantsid)
+                    
+                    // Conversation with deledted user - checks if there is a deleted user
+                    if let otherParticipants = otherParticipants.first, chat.numparticipants == 2, otherParticipants.isactive {
+                        //Doesnt show anything
                     }
-                    .buttonStyle(.plain)
-                    .listRowBackground(Color.clear)
-                    .listRowSeparator(.hidden)
+                    else {
+                        
+                        Button {
+                            //Set selected chat for viewmodel
+                            chatViewModel.selectedChat = chat
+                            
+                            isChatShowing = true
+                            
+                        } label: {
+                            ChatListRow(chat: chat, otherParticipants: otherParticipants)
+                            
+                        }
+                        .buttonStyle(.plain)
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
+                    }
                 }
                 .listStyle(.plain)
             }

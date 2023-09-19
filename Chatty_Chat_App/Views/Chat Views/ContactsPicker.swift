@@ -27,53 +27,59 @@ struct ContactsPicker: View {
                     
                     ForEach(contactsViewModel.filteredUser) { user in
                         
-                       let isSelectedContact = selectedContact.contains { u in
-                            u.id == user.id
+                        if user.isactive {
+                            
+                            let isSelectedContact = selectedContact.contains { u in
+                                 u.id == user.id
+                             }
+                             
+                             ZStack {
+                                 ContactRow(user: user)
+                                   
+                                 HStack {
+                                     Spacer()
+                                     
+                                     Button {
+                                         //Tapping button will toggle checkmark
+                                         if isSelectedContact {
+                                             
+                                             //Find index of contact within array
+                                             let index = selectedContact.firstIndex(of: user)
+                                             
+                                             //Remove contact from selected pool
+                                             if let index = index {
+                                                 selectedContact.remove(at: index)
+                                             }
+                                         }
+                                         else {
+                                             
+                                             //Impose limit of 3
+                                             if selectedContact.count < 3 {
+                                                 
+                                                 //Select contact
+                                                 selectedContact.append(user)
+                                             }
+                                             else {
+                                                 //TODO: Show message of limit reached
+                                             }
+                                         }
+                                     }
+                                         label: {
+                                             Image(systemName: isSelectedContact ? "checkmark.circle.fill" : "checkmark.circle")
+                                                 .resizable()
+                                                 .foregroundColor(Color("button-primary"))
+                                                 .frame(width: 25, height: 25)
+                                         
+                                     }
+
+                                 }
+                             }
+                             .padding(.top, 18)
+                             .padding(.horizontal)
+                            
                         }
                         
-                        ZStack {
-                            ContactRow(user: user)
-                              
-                            HStack {
-                                Spacer()
-                                
-                                Button {
-                                    //Tapping button will toggle checkmark
-                                    if isSelectedContact {
-                                        
-                                        //Find index of contact within array
-                                        let index = selectedContact.firstIndex(of: user)
-                                        
-                                        //Remove contact from selected pool
-                                        if let index = index {
-                                            selectedContact.remove(at: index)
-                                        }
-                                    }
-                                    else {
-                                        
-                                        //Impose limit of 3
-                                        if selectedContact.count < 3 {
-                                            
-                                            //Select contact
-                                            selectedContact.append(user)
-                                        }
-                                        else {
-                                            //TODO: Show message of limit reached
-                                        }
-                                    }
-                                }
-                                    label: {
-                                        Image(systemName: isSelectedContact ? "checkmark.circle.fill" : "checkmark.circle")
-                                            .resizable()
-                                            .foregroundColor(Color("button-primary"))
-                                            .frame(width: 25, height: 25)
-                                    
-                                }
-
-                            }
-                        }
-                        .padding(.top, 18)
-                        .padding(.horizontal)
+             
                     }
                 }
                 

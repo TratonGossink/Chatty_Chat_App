@@ -20,6 +20,9 @@ struct CreateProfileView: View {
     @State var source: UIImagePickerController.SourceType = .photoLibrary
     
     @State var isSavedButtonDisabled = false
+    @State var isErrorVisible = false
+    
+    @State var errorMessage = ""
     
     var body: some View {
         
@@ -67,13 +70,44 @@ struct CreateProfileView: View {
             //First Name
             TextField("First name", text: $firstName)
                 .textFieldStyle(profileTextFieldStyle())
+                .placeholder(when: firstName.isEmpty) {
+                    Text("First Name")
+                        .foregroundColor(Color("text-searchfield"))
+                        .font(Font.bodyParagraph)
+                }
+            
             //Last Name
             TextField("Last name", text: $lastName)
                 .textFieldStyle(profileTextFieldStyle())
+                .placeholder(when: lastName.isEmpty) {
+                    Text("Last Name")
+                        .foregroundColor(Color("text-searchfield"))
+                        .font(Font.bodyParagraph)
+                }
+            
+            //    //Error label
+            Text(errorMessage)
+                .foregroundColor(.red)
+                .font(Font.bodyParagraph)
+                .padding(.top, 20)
+                .opacity(isErrorVisible ? 1 : 0)
+            
             Spacer()
+            
             Button {
                 
-                //TODO: Ensure both fields are filled out
+                //Hide error message
+                isErrorVisible = false
+                
+                //Check for valid first name and last name input
+                guard !firstName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
+                        !lastName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                else {
+                    
+                    errorMessage = "Please enter a valid first and last name."
+                    isErrorVisible = true
+                    return
+                }
                 
                 //Preventing double tapping of button
                 isSavedButtonDisabled = true
@@ -81,13 +115,15 @@ struct CreateProfileView: View {
                 DatabaseService().setUserProfile(firstName: firstName, lastName: lastName, image: selectedImage) { isSuccess in
                     if isSuccess {
                         currentStep = .contacts
-                        print("Success")
+                   
                     }
                     else {
-                        currentStep = .contacts
-                        print("Failed")
+                        //Show error message
+                        errorMessage = "Error occured, Please try again."
+                      isErrorVisible = true
+                        
                     }
-                   
+                
                     isSavedButtonDisabled = false
                 }
             } label: {

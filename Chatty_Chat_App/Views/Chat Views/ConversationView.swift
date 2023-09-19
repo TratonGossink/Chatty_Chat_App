@@ -173,22 +173,21 @@ struct ConversationView: View {
                                         }
                                     }
                                     
+                                    let userOfMsg = participants.filter { p in
+                                        p.id == msg.sendid
+                                    }.first
                                     if msg.imageurl != "" {
                                         
                                         //Photo message
-                                        ConversationPhotoMessage(imageUrl: msg.imageurl!, isFromUser: isFromUser)
+                                        ConversationPhotoMessage(imageUrl: msg.imageurl!, isFromUser: isFromUser, isActive: userOfMsg?.isactive ?? true)
                                     }
                                     else {
                                         //Need to distinguish if group chat or existing message from an existing user
                                         if participants.count > 1 && !isFromUser {
                                             
-                                            let userOfMsg = participants.filter { p in
-                                                p.id == msg.sendid
-                                            }.first
-                                            
-                                            
+                    
                                             //Show msg with name
-                                            ConversationTextMessage(msg: msg.msg, isFromUser: isFromUser, name: "\(userOfMsg?.firstname ?? "") \(userOfMsg?.lastname ?? "")")
+                                            ConversationTextMessage(msg: msg.msg, isFromUser: isFromUser, name: "\(userOfMsg?.firstname ?? "") \(userOfMsg?.lastname ?? "")", isActive: userOfMsg?.isactive ?? true)
                                         }
                                         else {
                                             //Text Message
@@ -277,10 +276,13 @@ struct ConversationView: View {
                             TextField("Type your message", text: $chatMessage)
                                 .foregroundColor(Color("text-input"))
                                 .font(Font.bodyParagraph)
+                                .placeholder(when: chatMessage.isEmpty) {
+                                    Text("Type your message.")
+                                        .foregroundColor(Color("text-searchfield"))
+                                        .font(Font.bodyParagraph)
+                                }
                                 .padding(10)
-                            
                         }
-                        
                     }
                     .frame(height: 44)
                     
@@ -368,8 +370,10 @@ struct ConversationView: View {
         .sheet(isPresented: $isContactPickerShowing) {
             //Sheet dismissed
            
+            if participants.count > 0 {
+                //Searches for conversation with selected participants
                 chatViewModel.searchForChat(contacts: participants)
-            
+            }
             
         } content: {
             ContactsPicker(isContactPickerShowing: $isContactPickerShowing, selectedContact: $participants)

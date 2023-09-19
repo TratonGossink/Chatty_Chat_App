@@ -47,6 +47,11 @@ struct ContactsListView: View {
                 TextField("Search contact or number", text: $filterText)
                     .font(Font.bodyParagraph)
                     .foregroundColor(Color("text-input"))
+                    .placeholder(when: filterText.isEmpty) {
+                        Text("Search contact or number")
+                            .foregroundColor(Color("text-searchfield"))
+                            .font(Font.bodyParagraph)
+                    }
                     .padding()
             }
             .frame(height: 46)
@@ -58,19 +63,23 @@ struct ContactsListView: View {
                 
                 List(contactsViewModel.filteredUser) { user in
                     
-                    Button {
+                    //Only show contact if active
+                    if user.isactive {
                         
-                        //Searches for existing chat with user
-                        chatViewModel.searchForChat(contacts: [user])
-                        //Display conversation view
-                        isChatShowing = true
-                        
-                    } label: {
-                        ContactRow(user: user)
-                         
+                        Button {
+                            
+                            //Searches for existing chat with user
+                            chatViewModel.searchForChat(contacts: [user])
+                            //Display conversation view
+                            isChatShowing = true
+                            
+                        } label: {
+                            ContactRow(user: user)
+                            
+                        }
+                        .listRowBackground(Color(.clear))
+                        .listRowSeparator(.hidden)
                     }
-                    .listRowBackground(Color(.clear))
-                    .listRowSeparator(.hidden)
                 }
                 .listStyle(.plain)
                 .padding(.top, 12)

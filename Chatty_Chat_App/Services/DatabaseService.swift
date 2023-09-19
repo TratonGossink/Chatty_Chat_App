@@ -83,7 +83,10 @@ class DatabaseService {
         //TODO: After implementing auth, create document with actual users uid
         let doc = db.collection("users")
             .document(AuthViewModel.getLoggedInUserId())
-            doc.setData(["firstname": firstName, "lastname": lastName, "phone": userPhone])
+            doc.setData(["firstname": firstName,
+                         "lastname": lastName,
+                         "isactive" : true,
+                         "phone": userPhone])
         //Check if image is passed through
         if let image = image {
             
@@ -355,6 +358,29 @@ class DatabaseService {
         }
     }
     
+    
+    //MARK: - Account Methods
+    
+    func deactivateAccount(completion: @escaping () -> Void) {
+        
+        //make sure user is logged in
+        guard AuthViewModel.isUserLoggedIn() else {
+            return
+        }
+        //Database reference
+        let db = Firestore.firestore()
+        //Run command
+        db.collection("users").document(AuthViewModel.getLoggedInUserId())
+            .setData(["isactive" : false, "firstname": "Deleted",
+                      "lastname": "User"], merge: true) {
+            error in
+            
+            //Check for errors
+            if error == nil {
+                completion()
+            }
+        }
+    }
     
 }
 

@@ -24,7 +24,7 @@ struct ContactRow: View {
                 
                 Text(user.phone ?? "")
                     .font(Font.subheadline)
-                    .foregroundColor(Color("text-input"))
+                    .foregroundColor(Color("text-row-list"))
             }
             Spacer()
         }

@@ -60,13 +60,13 @@ struct ChatListRow: View {
                             }
                         }
                         .font(Font.subHeading)
-                        .foregroundColor(Color(.black))
+                        .foregroundColor(Color("text-row-list"))
                     }
                 }
                 Spacer()
                     Text(chat.updated == nil ? "" : DateHelper.chatTimestampFrom(date: chat.updated!))
                         .font(Font.subheadline)
-                        .foregroundColor(Color("text-input"))
+                        .foregroundColor(Color("text-row-list"))
                
             }
         

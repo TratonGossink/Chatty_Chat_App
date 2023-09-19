@@ -3,7 +3,7 @@
 import Foundation
 import SwiftUI
 
-struct DigitTextFieldStyle: TextFieldStyle {
+struct ProfileTextFieldStyle: TextFieldStyle {
     
     func _body(configuration: TextField<Self._Label>) -> some View {
         ZStack {
@@ -15,6 +15,7 @@ struct DigitTextFieldStyle: TextFieldStyle {
             }
             .frame(height: 60)
             configuration
+                .foregroundColor(Color("text-input"))
                 .font(.system(size: 32))
                 .padding(.leading, 25)
         }

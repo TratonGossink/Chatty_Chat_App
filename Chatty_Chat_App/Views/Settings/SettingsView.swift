@@ -57,7 +57,14 @@ struct SettingsView: View {
                     
 
                     Button {
-                        //Close settings view
+                        //Delete account
+                        settingsViewModel.deactivateAccount {
+                            //Deactivated account
+                            //Log out and shows onboarding
+                            AuthViewModel.logOut()
+                            
+                            isOnBoarding = true
+                        }
         
                     } label: {
                         Text("Delete Account")
