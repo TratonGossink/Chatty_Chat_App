@@ -8,7 +8,7 @@ This app was the biggest and most complicated app that I have developed yet. The
 conditionals, dynamic programming and many new to me features of SwiftUI. This project also incorporated Firebase Firestore for the database storage. Being how recent this course was made, I learned many new and applicable methods, tools and techniques 
 to apply to my future career in iOS development. 
 
-### Features of App
+### App Features
 - Account creation
 - Profile image selection
 - Syncing of existing contacts
